@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards: Linking Words</title>
+    <style>
+        :root {
+            --addition: #4285F4;
+            --contrast: #EA4335;
+            --cause: #34A853;
+            --result: #FBBC05;
+            --emphasis: #9C27B0;
+            --subordinate: #FF9800;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .addition { border-color: var(--addition); }
+        .contrast { border-color: var(--contrast); }
+        .cause { border-color: var(--cause); }
+        .result { border-color: var(--result); }
+        .emphasis { border-color: var(--emphasis); }
+        .subordinate { border-color: var(--subordinate); }
+        
+        .flashcard-header {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .flashcard-header .emoji {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .question {
+            color: #4a5568;
+            font-weight: 500;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .answer {
+            background: #ebf8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #4299e1;
+        }
+        
+        .explanation {
+            background: #f0fff4;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #48bb78;
+        }
+        
+        .examples {
+            background: #fff5f5;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #f56565;
+        }
+        
+        .connector {
+            font-weight: 700;
+            color: #2b6cb0;
+            background: #e3f2fd;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        
+        .check {
+            color: #48bb78;
+            margin-right: 5px;
+        }
+        
+        .example-item {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .example-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #718096;
+        }
+        
+        .function-label {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Flashcards: Linking Words & Subordinate Clauses</h1>
+    
+    <div class="flashcards-container">
+        <!-- Addition -->
+        <div class="flashcard addition" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">➕</span> Adição (Addition)
+            </div>
+            <div class="content">
+                <div class="question">Quais conectivos expressam adição de ideias?</div>
+                <div class="content">
+                    <div class="answer"><span class="connector">And</span>, <span class="connector">Moreover</span>, <span class="connector">In addition</span>, <span class="connector">Furthermore</span></div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Usados para acrescentar informações semelhantes ou complementares</p>
+                            <p><span class="check">⚠️</span> "Moreover" e "Furthermore" são mais formais que "and"</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="function-label">Informal</span> "She speaks French <span class="connector">and</span> Spanish."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Formal</span> "The plan is efficient; <span class="connector">moreover</span>, it's cost-effective."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contrast -->
+        <div class="flashcard contrast" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🔄</span> Contraste (Contrast)
+            </div>
+            <div class="content">
+                <div class="question">Quais conectivos expressam contraste?</div>
+                <div class="content">
+                    <div class="answer"><span class="connector">But</span>, <span class="connector">However</span>, <span class="connector">On the other hand</span>, <span class="connector">Although</span></div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Mostram oposição entre ideias</p>
+                            <p><span class="check">⚠️</span> "However" é mais formal que "but" e geralmente inicia nova frase</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="function-label">Básico</span> "I wanted to go, <span class="connector">but</span> I was tired."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Formal</span> "The results were good. <span class="connector">However</span>, we can improve."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cause -->
+        <div class="flashcard cause" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🔍</span> Causa (Cause)
+            </div>
+            <div class="content">
+                <div class="question">Quais conectivos expressam causa ou razão?</div>
+                <div class="content">
+                    <div class="answer"><span class="connector">Because</span>, <span class="connector">Since</span>, <span class="connector">As</span>, <span class="connector">Due to</span></div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Introduzem a razão de algo</p>
+                            <p><span class="check">⚠️</span> "Because" responde a "why?", enquanto "since" também pode indicar tempo</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="function-label">Direto</span> "I stayed home <span class="connector">because</span> I was sick."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Formal</span> "<span class="connector">Due to</span> the rain, the event was canceled."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Result -->
+        <div class="flashcard result" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🔜</span> Resultado (Result)
+            </div>
+            <div class="content">
+                <div class="question">Quais conectivos expressam resultado?</div>
+                <div class="content">
+                    <div class="answer"><span class="connector">So</span>, <span class="connector">Therefore</span>, <span class="connector">As a result</span>, <span class="connector">Consequently</span></div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Mostram consequência ou conclusão</p>
+                            <p><span class="check">⚠️</span> "Therefore" e "consequently" são mais formais que "so"</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="function-label">Básico</span> "It was raining, <span class="connector">so</span> we stayed home."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Acadêmico</span> "The data was inconsistent; <span class="connector">therefore</span>, we repeated the experiment."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Concession -->
+        <div class="flashcard emphasis" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🛑</span> Concessão (Concession)
+            </div>
+            <div class="content">
+                <div class="question">Quais conectivos expressam contraste inesperado?</div>
+                <div class="content">
+                    <div class="answer"><span class="connector">Although</span>, <span class="connector">Even though</span>, <span class="connector">Despite</span>, <span class="connector">In spite of</span></div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Mostram que algo aconteceu contra expectativas</p>
+                            <p><span class="check">⚠️</span> "Despite" e "in spite of" são seguidos por substantivo ou gerúndio</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="function-label">Frase completa</span> "<span class="connector">Although</span> it was cold, we went swimming."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Com substantivo</span> "<span class="connector">Despite</span> the rain, we had a picnic."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Subordinate Clauses -->
+        <div class="flashcard subordinate" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">⏸️</span> Orações Subordinadas
+            </div>
+            <div class="content">
+                <div class="question">Como funcionam as orações subordinadas?</div>
+                <div class="content">
+                    <div class="answer">Introduzidas por: <span class="connector">That</span>, <span class="connector">Which</span>, <span class="connector">Who</span>, <span class="connector">When</span>, <span class="connector">Where</span>, <span class="connector">Why</span></div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Dependem da oração principal para fazer sentido completo</p>
+                            <p><span class="check">⚠️</span> Podem ser adjetivas, adverbiais ou substantivas</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="function-label">Adjetiva</span> "The book <span class="connector">that</span> you lent me is fascinating."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Adverbial</span> "I'll call you <span class="connector">when</span> I arrive."
+                                </div>
+                                <div class="example-item">
+                                    <span class="function-label">Substantiva</span> "I know <span class="connector">that</span> you're right."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealContent(card) {
+            const contents = card.querySelectorAll('.content');
+            let foundActive = false;
+            
+            contents.forEach(content => {
+                if (!foundActive && !content.classList.contains('active')) {
+                    content.classList.add('active');
+                    foundActive = true;
+                } else if (foundActive) {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Reset if all are active
+            if (!foundActive) {
+                contents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                contents[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
